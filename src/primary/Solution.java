@@ -1,6 +1,8 @@
 package primary;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author zrc
@@ -45,7 +47,7 @@ public class Solution {
         }
     }*/
 
-
+//    移除元素
     public static int removeElement(int[] nums, int val) {
         int flag=0;
         for(int i=0;i<nums.length;i++){
@@ -57,7 +59,7 @@ public class Solution {
         return flag;
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         int[] nums ={0,1,2,2,3,0,4,2};
         int target=2;
         int ans = removeElement(nums, target);
@@ -65,6 +67,42 @@ public class Solution {
         for (int num : nums) {
             System.out.print(num+" ");
         }
+    }*/
+//    兼具大小写的最好英文字母
+    public static String greatestLetter(String s) {
+        Set<Character> hs=new HashSet<>();
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            hs.add(ch);
+        }
+        for(int i=25;i>=0;i--){
+            if(hs.contains((char)('a'+i))&&hs.contains((char)('A'+i))){
+                return String.valueOf((char)('A'+i));
+            }
+        }
+        return "";
+    }
+
+    public static String greatestLetter2(String s) {
+        Set<Character> hs=new HashSet<>();
+        for (char c : s.toCharArray()) {
+            hs.add(c);
+        }
+        for(char i='Z';i>='A';i--){
+            if(hs.contains(i)&&hs.contains((char) (i+32))){
+                return String.valueOf(i);
+            }
+        }
+        return "";
+    }
+
+    public static void main(String[] args) {
+        String s = "lEeTcOdE";
+
+//        String ans = greatestLetter(s);
+        String ans = greatestLetter2(s);
+        System.out.println(ans);
+
     }
 
 }
