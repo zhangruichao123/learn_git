@@ -2,6 +2,7 @@ package primary;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -103,6 +104,28 @@ public class Solution {
         String ans = greatestLetter2(s);
         System.out.println(ans);
 
+    }
+
+//    解密消息
+    public String decodeMessage(String key, String message) {
+        char cur='a';
+        Map<Character,Character> rules=new HashMap<Character,Character>();
+        for(int i=key.length()-1;i>=0;i--){
+            char c=key.charAt(i);
+            if(c!=' '&&!rules.containsKey(c)){
+                rules.put(c,cur);
+            }
+        }
+
+        StringBuilder ans=new StringBuilder();
+        for(int i=message.length()-1;i>=0;i--){
+            char c=message.charAt(i);
+            if(c!=' '){
+                c=rules.get(c);
+            }
+            ans.append(c);
+        }
+        return ans.toString();
     }
 
 }
